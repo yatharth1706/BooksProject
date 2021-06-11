@@ -48,8 +48,16 @@ app.post('/api/books', async (req, res) => {
         bookStoreList: req.body.bookStoreList 
     }
     const newBook = await new Book({...payload});
-    newBook.save()
-    res.status(201).send({message: "Book record created successfully!"})
+    newBook.save((err, book) => {
+        if (err) {
+          if (err.name === "MongoError")
+            res.status(500).send({ message: "Book name must be unique." });
+          else res.status(500).send({ message: err });
+          return;
+        }
+    
+        res.status(201).send({message: "Book record created successfully!"})
+      })
 })
 
 /** Update Book Record */
@@ -66,8 +74,18 @@ app.put('/api/books/:id', async (req, res) => {
         book.bookTags = req.body.bookTags;
         book.bookStoreList = req.body.bookStoreList;
 
-        book.save()
-        res.status(200).send({message: "Book record updated successfully!"})
+        book.save((err, savedBook) => {
+            if (err) {
+              if (err.name === "MongoError")
+                res.status(500).send({ message: "Book name must be unique." });
+              else res.status(500).send({ message: err });
+              return;
+            }
+        
+            res.status(200).send({message: "Book record updated successfully!"})
+          }
+          )
+        
     })
 })
 
