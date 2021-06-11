@@ -18,6 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 /** Port details */
 const port = process.env.PORT || 3000;
 
+app.get('/', (req,res) => {
+    res.send("Welcome to book store")
+})
+
 /** GET All Books Route */
 app.get('/api/books', async (req,res) => {
     const bookList = await Book.find({});
