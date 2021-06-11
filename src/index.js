@@ -25,7 +25,7 @@ app.get('/', (req,res) => {
 /** GET All Books Route */
 app.get('/api/books', async (req,res) => {
     const bookList = await Book.find({});
-    res.status(200).send(bookList)
+    res.status(200).send({booksResult: bookList})
 })
 
 /** Get Specific Books Routes */
