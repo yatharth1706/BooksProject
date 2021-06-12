@@ -40,7 +40,7 @@ app.get('/api/books/:id', async (req,res) => {
 
 /** Create Book Record */
 app.post('/api/books', async (req, res) => {
-    console.log(payload)
+    console.log(req.body)
     const newBook = await new Book({...req.body});
     newBook.save((err, book) => {
         if (err) {
