@@ -47,6 +47,7 @@ app.post('/api/books', async (req, res) => {
         bookTags : req.body.bookTags,
         bookStoreList: req.body.bookStoreList 
     }
+    console.log(payload)
     const newBook = await new Book({...payload});
     newBook.save((err, book) => {
         if (err) {
