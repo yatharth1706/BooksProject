@@ -8,18 +8,20 @@ const bookSchema = new mongoose.Schema({
     },
     bookAuthor: {
         type: String,
-        required: true
+        required: true,
+        default: ""
     },
     bookPublication: {
         type: String,
-        required: true
+        required: true,
+        default: ""
     },
     bookTags: [String],
     bookStoreList:[{
-        storeName: String,
-        storeMapLat: Number,
-        storeMapLong: Number,
-        storeOwnerContactDetails: String
+        storeName: {type: String, default: ""},
+        storeMapLat: {type: Number, default: 0},
+        storeMapLong: {type: Number, default: 0},
+        storeOwnerContactDetails: {type: String, default: ""}
     }]    
 })
 

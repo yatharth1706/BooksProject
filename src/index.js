@@ -40,15 +40,8 @@ app.get('/api/books/:id', async (req,res) => {
 
 /** Create Book Record */
 app.post('/api/books', async (req, res) => {
-    const payload = {
-        bookName : req.body.bookName,
-        bookAuthor : req.body.bookAuthor,
-        bookPublication : req.body.bookPublication,
-        bookTags : req.body.bookTags,
-        bookStoreList: req.body.bookStoreList 
-    }
     console.log(payload)
-    const newBook = await new Book({...payload});
+    const newBook = await new Book({...req.body});
     newBook.save((err, book) => {
         if (err) {
           if (err.name === "MongoError")
