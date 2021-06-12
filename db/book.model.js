@@ -13,7 +13,6 @@ const bookSchema = new mongoose.Schema({
     },
     bookPublication: {
         type: String,
-        required: true,
         default: ""
     },
     bookTags: [String],
